@@ -1,14 +1,23 @@
 package main
 
 import (
-	routes "go-gin-jwt-auth/routes"
+	"log"
 	"os"
+
+	routes "github.com/DKJohn92/go-gin-jwt-auth/routes"
+	"github.com/joho/godotenv"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	port := os.Getenv("PORT")
+
 	if port == "" {
 		port = "8000"
 	}
